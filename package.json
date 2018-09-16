@@ -1,57 +1,59 @@
 {
-  "name": "ts-css-loader",
-  "version": "1.0.0",
-  "description": "Drop-in replacement for css-loader to generate typings for your CSS-Modules on the fly in webpack",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "babel src -d lib",
-    "prepublish": "npm run build",
-    "pretest": "rm -f ./test/example*.css.d.ts",
-    "test:diff": "(cd test; set -e; for f in example*css.d.ts; do diff $f expected-$f; done;)",
-    "test:run": "babel-node ./node_modules/webpack/bin/webpack --config ./test/webpack.config.babel.js",
-    "test:run-twice": "npm run test:run > /dev/null 2>&1 && npm run test:run",
-    "test": "npm run test:run-twice && npm run test:diff"
-  },
-  "author": "Budarin Vadim",
-  "license": "MIT",
-  "keywords": [
-    "TypeScript",
-    "CSS Modules",
-    "CSS Modules typings",
-    "Webpack",
-    "Webpack loader",
-    "Webpack css module typings loader",
-    "typescript webpack typings",
-    "css modules webpack typings"
-  ],
-  "dependencies": {
-    "colour": "^0.7.1",
-    "graceful-fs": "^4.1.11",
-    "loader-utils": "^1.1.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.1",
-    "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "babel-eslint": "^9.0.0",
-    "babel-loader": "^8.0.2",
-    "css-loader": "^1.0.0",
-    "eslint": "^5.6.0",
-    "eslint-plugin-babel": "^5.2.0",
-    "ts-loader": "^5.1.1",
-    "typescript": "^3.0.3",
-    "webpack": "^4.19.0"
-  },
-  "peerDependencies": {
-    "css-loader": "^1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/budarin/ts-css-loader.git"
-  },
-  "bugs": {
-    "url": "https://github.com/budarin/ts-css-loader/issues"
-  },
-  "homepage": "https://github.com/budarin/ts-css-loader#readme"
+    "name": "ts-css-loader",
+    "version": "1.0.0",
+    "description": "Drop-in replacement for css-loader to generate typings for your CSS-Modules on the fly in webpack",
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "babel src -d lib",
+        "prepublish": "npm run build",
+        "pretest": "rm -f ./test/**.css.d.ts",
+        "test:diff": "(cd test; set -e; for f in example*css.d.ts; do diff $f expected-$f; done;)",
+        "test:run": "webpack --config ./test/webpack.config.babel.js",
+        "test:run-twice": "npm run test:run && npm run test:run",
+        "test": "npm run test:run-twice && npm run test:diff"
+    },
+    "author": "Budarin Vadim",
+    "license": "MIT",
+    "keywords": [
+        "TypeScript",
+        "CSS Modules",
+        "CSS Modules typings",
+        "Webpack",
+        "Webpack loader",
+        "Webpack css module typings loader",
+        "typescript webpack typings",
+        "css modules webpack typings"
+    ],
+    "dependencies": {
+        "colour": "^0.7.1",
+        "graceful-fs": "^4.1.11",
+        "loader-utils": "^1.1.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.0.0",
+        "@babel/core": "^7.0.1",
+        "@babel/polyfill": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "babel-eslint": "^9.0.0",
+        "babel-loader": "^8.0.2",
+        "css-loader": "^1.0.0",
+        "eslint": "^5.6.0",
+        "eslint-plugin-babel": "^5.2.0",
+        "rimraf": "^2.6.2",
+        "ts-loader": "^5.1.1",
+        "typescript": "^3.0.3",
+        "webpack": "^4.19.0",
+        "webpack-cli": "^3.1.0"
+    },
+    "peerDependencies": {
+        "css-loader": "^1.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/budarin/ts-css-loader.git"
+    },
+    "bugs": {
+        "url": "https://github.com/budarin/ts-css-loader/issues"
+    },
+    "homepage": "https://github.com/budarin/ts-css-loader#readme"
 }
