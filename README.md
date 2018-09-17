@@ -24,16 +24,10 @@ declare interface ILocals {
 
 export const hello: string;
 export const locals: ILocals;
-
-declare interface IAppCss {
-    readonly locals: ILocals;
-}
-declare const styles: IAppCss;
-
-export default styles;
 ```
 
-modules + namedExport + usable + source:
+modules + namedExport + usable + server:
+(server => sourse + styles)
 
 ```ts
 declare interface ILocals {
