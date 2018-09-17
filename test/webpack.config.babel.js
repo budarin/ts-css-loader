@@ -32,7 +32,7 @@ module.exports = {
             {
                 test: /example-no-css-modules\.css$/,
                 loader: './src/index.js',
-                options: { silent: true }, //set silent: false to have an error during loding time
+                options: { modules: false, silent: true }, //set silent: false to have an error during loding time
             },
             {
                 test: /example-compose\.css$/,
