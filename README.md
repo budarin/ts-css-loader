@@ -35,7 +35,7 @@ the other parameters are the same as the `css-loader`:
 
 This loader should be used instead of` css-loader ' because inside it uses it.
 
-An example of using webpack at.config:
+An example of using webpack.config:
 
 ```js
     test: /\.css$/,
@@ -75,7 +75,7 @@ export default styles;
 
 Default: `'CRLF'`
 Defines a line separator in type definition file and must be equal to the parameter set in `git` to prevent constant overwriting of type definition file.
-This parameter can take one of `{'CR LF','LF`}'
+This parameter can take one of these acronims `{'CR LF','LF`}'
 
 ```js
     test: /\.css$/,
