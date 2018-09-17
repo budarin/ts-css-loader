@@ -12,7 +12,7 @@ The purpose of creating yet another typescript generation loader for css-modules
 `fake-style-loader` adds a property to the standard css-modules interface:
 
 -   `source: String`
--   all classname into edfault exported object
+-   all classname into default exported object
 
 ## `Installation`
 
