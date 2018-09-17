@@ -12,7 +12,6 @@ declare interface ILocals {
     readonly hello: string;
 }
 declare interface IAppCss {
-    readonly hello: string;
     readonly locals: ILocals;
 }
 declare const styles: IAppCss;
@@ -26,19 +25,29 @@ export default styles;
 declare interface ILocals {
     readonly hello: string;
 }
-declare interface IAppCss {
-    readonly hello: string;
-    readonly locals: ILocals;
-}
-declare const styles: IAppCss;
 
 export const hello: string;
 export const locals: ILocals;
+```
+
+-   modules + server:
+
+```ts
+declare interface ILocals {
+    readonly hello: string;
+}
+declare interface IAppCss {
+    readonly hello: string;
+    readonly locals: ILocals;
+    readonly source: string;
+}
+declare const styles: IAppCss;
+
 export default styles;
 ```
 
--   modules + namedExport + usable + server:
-    (server => sourse + styles)
+-   modules + usable + server:
+    (server => sourse + ILocals )
 
 ```ts
 declare interface ILocals {
@@ -53,10 +62,21 @@ declare interface IAppCss {
 }
 declare const styles: IAppCss;
 
+export default styles;
+```
+
+-   modules + namedExport +usable + server:
+    (server => sourse + ILocals )
+
+```ts
+declare interface ILocals {
+    readonly hello: string;
+}
+
 export const hello: string;
 export const locals: ILocals;
 export const use: Function;
 export const unuse: Function;
 export const source: string;
-export default styles;
+}
 ```
