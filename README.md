@@ -4,9 +4,10 @@ Webpack loader that works as a css-loader drop-in replacement to generate TypeSc
 
 https://github.com/webpack-contrib/css-loader
 
+## Options
+
 -   EOL
 -   silent
-
 -   default :
 
 ```ts
