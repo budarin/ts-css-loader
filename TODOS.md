@@ -1,1 +1,2 @@
 -   write readme
+-   EL enum (CRLF, LF, OS)
