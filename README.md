@@ -4,12 +4,12 @@ This loader is a fork of the well-known loader [typings-for-css-modules-loader](
 
 The purpose of creating yet another typescript generation loader for css-modules is the ability to use it in an isomorphic application in conjunction with [style-loader/usable](https://github.com/webpack-contrib/style-loader) and [fake-style-loader](https://github.com/dferber90/fake-style-loader).
 
-`style-loader/usable` adds 2 methods to the standard css-modules interface:
+`style-loader/usable` adds 2 methods to the css-modules interface:
 
 -   `use: Function`
 -   `unuse: Function`
 
-`fake-style-loader` adds a property to the standard css-modules interface:
+`fake-style-loader` adds a properties to the css-modules interface:
 
 -   `source: String`
 -   all classnames into default exported object
