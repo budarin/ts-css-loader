@@ -7,12 +7,12 @@ const filenameToInterfaceName = filename => {
         .replace(/\W+(\w)/g, (_, c) => c.toUpperCase());
 };
 
-const cssModuleToTypescriptInterfaceProperties = (cssModuleKeys, indent = '  ') => {
-    return cssModuleKeys.map(key => `${indent}readonly '${key}': string;`).join('\n');
+const cssModuleToTypescriptInterfaceProperties = (cssModuleKeys, indent = '  ', EOL) => {
+    return cssModuleKeys.map(key => `${indent}readonly '${key}': string;`).join(EOL);
 };
 
-const cssModuleToNamedExports = cssModuleKeys => {
-    return cssModuleKeys.map(key => `export const ${key}: string;`).join('\n');
+const cssModuleToNamedExports = (cssModuleKeys, EOL) => {
+    return cssModuleKeys.map(key => `export const ${key}: string;`).join(EOL);
 };
 
 const allWordsRegexp = /^\w+$/i;
@@ -74,18 +74,20 @@ export const filterReservedWordClasses = cssModuleKeys => {
 export const filenameToTypingsFilename = filename => {
     const dirName = path.dirname(filename);
     const baseName = path.basename(filename);
+
     return path.join(dirName, `${baseName}.d.ts`);
 };
 
-export const generateNamedExports = cssModuleKeys => {
-    const namedExports = cssModuleToNamedExports(cssModuleKeys);
+export const generateNamedExports = (cssModuleKeys, EOL) => {
+    const namedExports = cssModuleToNamedExports(cssModuleKeys, EOL);
+
     return `${namedExports}
 `;
 };
 
-export const generateGenericExportInterface = (cssModuleKeys, filename, indent) => {
+export const generateGenericExportInterface = (cssModuleKeys, filename, indent, EOL) => {
     const interfaceName = filenameToInterfaceName(filename);
-    const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, indent);
+    const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, indent, EOL);
 
     return `export interface ${interfaceName} {
 ${interfaceProperties}

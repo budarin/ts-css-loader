@@ -2,6 +2,7 @@ import cssLoader from 'css-loader';
 import cssLocalsLoader from 'css-loader/locals';
 import loaderUtils from 'loader-utils';
 import 'colour';
+import os from 'os';
 
 import {
     filterNonWordClasses,
@@ -23,11 +24,14 @@ module.exports = function(...input) {
 
     // mock async step 1 - css loader is async, we need to intercept this so we get async ourselves
     const callback = this.async();
-
     const query = loaderUtils.getOptions(this);
     const logger = loggerCreator(query.silent);
-
     const moduleMode = query.modules || query.module;
+    const EOLs = {
+        CRLF: os.EOL,
+        LF: '\n',
+    };
+
     if (!moduleMode) {
         logger('warn', 'Typings for CSS-Modules: option `modules` is not active - skipping extraction work...'.red);
         return delegateToCssLoader(this, input, callback);
@@ -45,7 +49,10 @@ module.exports = function(...input) {
         const cssModuleKeys = [];
         const keyRegex = /"([^\\"]+)":/g;
         const filename = this.resourcePath;
+        const EOL = EOLs[query.EOL || 'CRLF'];
         const cssModuleInterfaceFilename = filenameToTypingsFilename(filename);
+
+        console.log('EOL = ', query.EOL);
 
         while ((match = keyRegex.exec(content))) {
             if (cssModuleKeys.indexOf(match[1]) < 0) {
@@ -78,22 +85,22 @@ These can be accessed using the object literal syntax; eg styles['delete'] inste
                 );
             }
 
-            cssModuleDefinition = generateNamedExports(nonReservedWordDefinitions);
+            cssModuleDefinition = generateNamedExports(nonReservedWordDefinitions, EOL);
         } else {
-            cssModuleDefinition = generateGenericExportInterface(cssModuleKeys, filename);
+            cssModuleDefinition = generateGenericExportInterface(cssModuleKeys, filename, EOL);
         }
 
         if (cssModuleDefinition.trim() === '') {
             // Ensure empty CSS modules export something
-            cssModuleDefinition = 'export {};\n';
+            cssModuleDefinition = `export {};${EOL}`;
         }
 
         if (query.banner) {
             // Prefix banner to CSS module
-            cssModuleDefinition = query.banner + '\n' + cssModuleDefinition;
+            cssModuleDefinition = query.banner + EOL + cssModuleDefinition;
         }
 
-        persist.writeToFileIfChanged(cssModuleInterfaceFilename, cssModuleDefinition), query.EOL;
+        persist.writeToFileIfChanged(cssModuleInterfaceFilename, cssModuleDefinition, EOL);
 
         // mock async step 3 - make `async` return the actual callback again before calling the 'real' css-loader
         delegateToCssLoader(this, input, callback);
