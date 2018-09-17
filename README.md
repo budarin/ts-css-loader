@@ -1,4 +1,6 @@
-# ts-css-loader
+# @budarin/ts-css-loader
+
+Readme is under construction - will be fixed soon :)
 
 Webpack loader that works as a css-loader drop-in replacement to generate TypeScript typings for CSS modules on the fly
 
