@@ -5,48 +5,28 @@ Webpack loader that works as a css-loader drop-in replacement to generate TypeSc
 -   EOL
 -   by default: none ??
 
--   modules:
-
-```ts
-declare interface IAppCss {
-    readonly hello: string;
-}
-
-export const locals: ILocals;
-```
-
-modules + namedExport:
+-   modules + namedExport + usable + server:
+    (server => sourse + styles)
 
 ```ts
 declare interface ILocals {
     readonly hello: string;
 }
-
-export const hello: string;
-export const locals: ILocals;
-```
-
-modules + namedExport + usable + server:
-(server => sourse + styles)
-
-```ts
-declare interface ILocals {
-    readonly hello: string;
-}
-
-export const hello: string;
-export const locals: ILocals;
-export const source: string;
-export const use: Function;
-export const unuse: Function;
-
 declare interface IAppCss {
+    readonly hello: string;
     readonly locals: ILocals;
-    readonly source: string;
     readonly use: Function;
     readonly unuse: Function;
+    readonly source: string;
 }
+
 declare const styles: IAppCss;
+
+export const hello: string;
+export const locals: ILocals;
+export const use: Function;
+export const unuse: Function;
+export const source: string;
 
 export default styles;
 ```
