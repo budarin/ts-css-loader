@@ -21,14 +21,14 @@ Install via npm `npm install --save-dev @budarin/ts-css-loader`
 
 All options are available only when the parameter `modules` set to `true`(see options for [css-loader](https://github.com/webpack-contrib/css-loader#options))
 
-|                   Name                    |    Type     | Default | Description                                      |
-| :---------------------------------------: | :---------: | :-----: | :----------------------------------------------- |
-|             **[`EOL`](#EOL)**             | `{String}`  | `CRLF`  | {'CRLF', 'LF'}                                   |
-| **[`onlyNamedExport`](#onlyNamedExport)** | `{Boolean}` | `false` | Export only named items of interface             |
-|          **[`usable`](#usable)**          | `{Boolean}` | `false` | Add `use` and `unuse` methods to interface       |
-|          **[`server`](#server)**          | `{Boolean}` | `false` | Add `source` property to interface               |
-|          **[`silent`](#silent)**          | `{Boolean}` | `false` | To silence the loader                            |
-|          **[`banner`](#banner)**          | `{Boolean}` | `false` | Adds a "banner" prefix to each generated \*.d.ts |
+|                   Name                    |    Type     | Default | Description                                                                |
+| :---------------------------------------: | :---------: | :-----: | :------------------------------------------------------------------------- |
+|             **[`EOL`](#EOL)**             | `{String}`  | `CRLF`  | {'CRLF', 'LF'}                                                             |
+| **[`onlyNamedExport`](#onlyNamedExport)** | `{Boolean}` | `false` | Export only named items of interface                                       |
+|          **[`usable`](#usable)**          | `{Boolean}` | `false` | Add `use` and `unuse` methods to interface and all classnames in flat view |
+|          **[`server`](#server)**          | `{Boolean}` | `false` | Add `source` property to interface                                         |
+|          **[`silent`](#silent)**          | `{Boolean}` | `false` | To silence the loader                                                      |
+|          **[`banner`](#banner)**          | `{Boolean}` | `false` | Adds a "banner" prefix to each generated \*.d.ts                           |
 
 the other parameters are the same as the `css-loader`:
 
