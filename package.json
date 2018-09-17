@@ -13,7 +13,7 @@
         "test:run-twice": "npm run test:run || npm run test:run",
         "test": "npm run test:run-twice && tsc ./test/entry.ts",
         "version:patch": "npm version patch -m \"Upgrade to %s for reasons\"",
-        "publish": "npm run version:patch && npm publish"
+        "publish": "npm publish"
     },
     "author": "Budarin Vadim",
     "license": "MIT",
