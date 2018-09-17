@@ -290,7 +290,7 @@ declare const styles: IAppCss;
 export default styles;
 ```
 
-### using `onlyNamedExport` with the `camelCase`-option
+### using `onlyNamedExport` with the `camelCase`
 
 Using the `onlyNamedExport` as well as the `camelCase` options the generated file will look as follow:
 
