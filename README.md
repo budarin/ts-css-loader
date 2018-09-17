@@ -290,9 +290,9 @@ declare const styles: IAppCss;
 export default styles;
 ```
 
-### using `namedExport` with the `camelCase`-option
+### using `onlyNamedExport` with the `camelCase`-option
 
-Using the `namedExport` as well as the `camelCase` options the generated file will look as follow:
+Using the `onlyNamedExport` as well as the `camelCase` options the generated file will look as follow:
 
 ```ts
 export const someClass: string;
