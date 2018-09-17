@@ -1,6 +1,9 @@
+.vscode
 .babelrc
 .eslintrc
 .editorconfig
+.prettierignore
+.prettierrc
 jsconfig.json
 src
 test
