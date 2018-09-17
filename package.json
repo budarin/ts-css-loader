@@ -10,7 +10,7 @@
         "test:diff": "(cd test; set -e; for f in example*css.d.ts; do diff $f expected-$f; done;)",
         "test:run": "node -r @babel/register ./node_modules/webpack-cli/bin/cli --config ./test/webpack.config.babel.js",
         "test:run-twice": "npm run test:run || npm run test:run",
-        "test": "npm run test:run-twice && npm run test:diff"
+        "test": "npm run test:run-twice && tsc ./test/entry"
     },
     "author": "Budarin Vadim",
     "license": "MIT",
