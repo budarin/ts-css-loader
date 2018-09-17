@@ -1,21 +1,21 @@
 import fs from 'graceful-fs';
 import os from 'os';
 
-export const writeToFileIfChanged = (filename, content) => {
-  if (fs.existsSync(filename)) {
-    const currentInput = fs.readFileSync(filename, 'utf-8');
+const writeFile = (filename, content, EOL) => {
+    //Replace new lines with OS-specific new lines
+    content = content.replace(/\n/g, EOL);
 
-    if (currentInput !== content) {
-      writeFile(filename, content);
-    }
-  } else {
-    writeFile(filename, content);
-  }
+    fs.writeFileSync(filename, content, 'utf8');
 };
 
-const writeFile = (filename, content) => {
-  //Replace new lines with OS-specific new lines
-  content = content.replace(/\n/g, os.EOL);
+export const writeToFileIfChanged = (filename, content, EOL = os.EOL) => {
+    if (fs.existsSync(filename)) {
+        const currentInput = fs.readFileSync(filename, 'utf-8');
 
-  fs.writeFileSync(filename, content, 'utf8');
+        if (currentInput !== content) {
+            writeFile(filename, content);
+        }
+    } else {
+        writeFile(filename, content, EOL);
+    }
 };

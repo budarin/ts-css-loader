@@ -2,9 +2,10 @@
 
 Webpack loader that works as a css-loader drop-in replacement to generate TypeScript typings for CSS modules on the fly
 
-by default: none ??
+-   EOL
+-   by default: none ??
 
-modules:
+-   modules:
 
 ```ts
 declare interface IAppCss {

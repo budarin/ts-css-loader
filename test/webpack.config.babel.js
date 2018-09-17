@@ -12,32 +12,32 @@ module.exports = {
             {
                 test: /example\.css$/,
                 loader: './src/index.js',
-                options: { modules: true },
+                options: { EOL: '\n', modules: true },
             },
             {
                 test: /example-camelcase\.css$/,
                 loader: './src/index.js',
-                options: { modules: true, camelCase: true },
+                options: { EOL: '\n', modules: true, camelCase: true },
             },
             {
                 test: /example-namedexport\.css$/,
                 loader: './src/index.js',
-                options: { modules: true, namedExport: true },
+                options: { EOL: '\n', modules: true, namedExport: true },
             },
             {
                 test: /example-camelcase-namedexport\.css$/,
                 loader: './src/index.js',
-                options: { modules: true, camelCase: true, namedExport: true },
+                options: { EOL: '\n', modules: true, camelCase: true, namedExport: true },
             },
             {
                 test: /example-no-css-modules\.css$/,
                 loader: './src/index.js',
-                options: { modules: false, silent: true }, //set silent: false to have an error during loding time
+                options: { EOL: '\n', modules: false, silent: true }, //set silent: false to have an error during loding time
             },
             {
                 test: /example-compose\.css$/,
                 loader: './src/index.js',
-                options: { modules: true, camelCase: true, namedExport: true },
+                options: { EOL: '\n', modules: true, camelCase: true, namedExport: true },
             },
         ],
     },
