@@ -76,7 +76,7 @@ export default styles;
 Default: `'CRLF'`.
 
 Defines a line separator in type definition file and must be equal to the parameter set in `git` to prevent constant overwriting of type definition file.
-This parameter can take one of these acronims `{'CR LF','LF`}'
+This parameter can take one of these acronims `{'CRLF','LF`}'
 
 ```js
     test: /\.css$/,
