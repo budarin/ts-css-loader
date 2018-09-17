@@ -4,6 +4,7 @@
     "description": "Drop-in replacement for css-loader to generate typings for your CSS-Modules on the fly in webpack",
     "main": "lib/index.js",
     "scripts": {
+        "start": "node -r @babel/register ./node_modules/webpack-cli/bin/cli --config ./test/webpack.config.babel.js --watch",
         "build": "babel src -d lib",
         "prepublish": "npm run test && npm run build",
         "pretest": "rm -f ./test/**.css.d.ts",

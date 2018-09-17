@@ -37,6 +37,15 @@ module.exports = function(...input) {
         return delegateToCssLoader(this, input, callback);
     }
 
+    const options = {
+        EOL: 'CRLF',
+        usable: false,
+        server: false,
+        camelCase: true,
+        onlyNamedExport: false,
+        ...query,
+    };
+
     // mock async step 2 - offer css loader a "fake" callback
     this.async = () => (err, content) => {
         if (err) {
@@ -49,10 +58,8 @@ module.exports = function(...input) {
         const cssModuleKeys = [];
         const keyRegex = /"([^\\"]+)":/g;
         const filename = this.resourcePath;
-        const EOL = EOLs[query.EOL || 'CRLF'];
+        const EOL = EOLs[options.EOL || 'CRLF'];
         const cssModuleInterfaceFilename = filenameToTypingsFilename(filename);
-
-        console.log('EOL = ', query.EOL);
 
         while ((match = keyRegex.exec(content))) {
             if (cssModuleKeys.indexOf(match[1]) < 0) {
@@ -60,11 +67,11 @@ module.exports = function(...input) {
             }
         }
 
-        if (query.onlyNamedExport) {
+        if (options.onlyNamedExport) {
             const [cleanedDefinitions, skippedDefinitions] = filterNonWordClasses(cssModuleKeys);
             const [nonReservedWordDefinitions, reservedWordDefinitions] = filterReservedWordClasses(cleanedDefinitions);
 
-            if (skippedDefinitions.length > 0 && !query.camelCase) {
+            if (skippedDefinitions.length > 0 && !options.camelCase) {
                 logger(
                     'warn',
                     `Typings for CSS-Modules: option 'onlyNamedExport' was set but 'camelCase' for the css-loader not.
@@ -85,9 +92,9 @@ These can be accessed using the object literal syntax; eg styles['delete'] inste
                 );
             }
 
-            cssModuleDefinition = generateNamedExports(nonReservedWordDefinitions, EOL);
+            cssModuleDefinition = generateNamedExports(options, nonReservedWordDefinitions, EOL);
         } else {
-            cssModuleDefinition = generateGenericExportInterface(cssModuleKeys, filename, EOL);
+            cssModuleDefinition = generateGenericExportInterface(options, cssModuleKeys, filename, EOL);
         }
 
         if (cssModuleDefinition.trim() === '') {
@@ -95,9 +102,9 @@ These can be accessed using the object literal syntax; eg styles['delete'] inste
             cssModuleDefinition = `export {};${EOL}`;
         }
 
-        if (query.banner) {
+        if (options.banner) {
             // Prefix banner to CSS module
-            cssModuleDefinition = query.banner + EOL + cssModuleDefinition;
+            cssModuleDefinition = options.banner + EOL + cssModuleDefinition;
         }
 
         persist.writeToFileIfChanged(cssModuleInterfaceFilename, cssModuleDefinition, EOL);

@@ -1,22 +1,22 @@
-import { locals as stylesBase } from './example.css';
-import { locals as stylesCamelCase } from './example-camelcase.css';
+import stylesBase from './example.css';
+import stylesCamelCase from './example-camelcase.css';
 import * as stylesNamedExport from './example-namedexport.css';
 import * as stylesCamelCasedNamedExport from './example-camelcase-namedexport.css';
 import './example-no-css-modules.css';
 import * as compose from './example-compose.css';
 
-const foo = stylesBase.foo;
+const foo = stylesBase.locals.foo;
 console.log(foo);
 
-const barBaz = stylesBase['bar-baz'];
+const barBaz = stylesBase.locals['bar-baz'];
 console.log('barBaz', barBaz);
 
-const fooCamelCase = stylesCamelCase.barBaz;
+const fooCamelCase = stylesCamelCase.locals.foo;
 console.log('fooCamelCase', fooCamelCase);
 
-const barBazCamelCase = stylesCamelCase.barBaz;
+const barBazCamelCase = stylesCamelCase.locals.barBaz;
 console.log('barBazCamelCase', barBazCamelCase);
-const barBazDashedCamelCase = stylesCamelCase['bar-baz'];
+const barBazDashedCamelCase = stylesCamelCase.locals['bar-baz'];
 console.log('barBazDashedCamelCase', barBazDashedCamelCase);
 
 const fooNamedExport = stylesNamedExport.foo;

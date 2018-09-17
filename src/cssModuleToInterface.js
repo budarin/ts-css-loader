@@ -7,12 +7,21 @@ const filenameToInterfaceName = filename => {
         .replace(/\W+(\w)/g, (_, c) => c.toUpperCase());
 };
 
-const cssModuleToTypescriptInterfaceProperties = (cssModuleKeys, indent = '  ', EOL) => {
-    return cssModuleKeys.map(key => `${indent}readonly '${key}': string;`).join(EOL);
-};
+const cssModuleToNamedExports = (options, cssModuleKeys) => {
+    const result = cssModuleKeys.map(key => `export const ${key}: string;`);
 
-const cssModuleToNamedExports = (cssModuleKeys, EOL) => {
-    return cssModuleKeys.map(key => `export const ${key}: string;`).join(EOL);
+    if (options.usable) {
+        result.push('export const use: Function;');
+        result.push('export const unuse: Function;');
+    }
+
+    if (options.server) {
+        result.push('export const source: string;');
+    }
+
+    result.push('');
+
+    return result;
 };
 
 const allWordsRegexp = /^\w+$/i;
@@ -78,21 +87,44 @@ export const filenameToTypingsFilename = filename => {
     return path.join(dirName, `${baseName}.d.ts`);
 };
 
-export const generateNamedExports = (cssModuleKeys, EOL) => {
-    const namedExports = cssModuleToNamedExports(cssModuleKeys, EOL);
+const cssModuleToTypescriptInterfaceProperties = (cssModuleKeys, indent = '  ') => {
+    const result = cssModuleKeys.map(key => `${indent}readonly '${key}': string;`);
 
-    return `${namedExports}
-`;
+    return result;
 };
 
-export const generateGenericExportInterface = (cssModuleKeys, filename, indent, EOL) => {
+// Generate utils
+export const generateNamedExports = (options, cssModuleKeys, EOL) => {
+    const namedExports = cssModuleToNamedExports(options, cssModuleKeys);
+
+    return namedExports.join(EOL);
+};
+
+export const generateGenericExportInterface = (options, cssModuleKeys, filename, EOL, indent = '  ') => {
+    const localsInterface = 'declare interface ILocals {';
     const interfaceName = filenameToInterfaceName(filename);
-    const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, indent, EOL);
+    const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, indent);
+    const usableInterfaceProperties = [`${indent}readonly use: Function;`, `${indent}readonly unuse: Function;`];
+    const result = [];
 
-    return `export interface ${interfaceName} {
-${interfaceProperties}
-}
+    result.push(
+        localsInterface,
+        ...interfaceProperties,
+        '}',
+        '',
+        `export interface ${interfaceName} {`,
+        `${indent}readonly locals: ILocals;`,
+    );
 
-export const locals: ${interfaceName};
-`;
+    if (options.usable) {
+        result.push(...usableInterfaceProperties);
+    }
+
+    if (options.server) {
+        result.push(`${indent}readonly source: string;`);
+    }
+
+    result.push('}', '', `declare const styles: ${interfaceName};`, '', 'export default styles;');
+
+    return result.join(EOL);
 };

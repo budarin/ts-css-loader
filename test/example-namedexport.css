@@ -1,108 +1,108 @@
 .foo {
-  color: white;
+    color: white;
 }
 
 .bar-baz {
-  color: green;
+    color: green;
 }
 
 /* All of the below are reserved words in JavaScript and cannot be emitted as a named export */
 .break {
-  color: red;
+    color: red;
 }
 .case {
-  color: red;
+    color: red;
 }
 .catch {
-  color: red;
+    color: red;
 }
 .class {
-  color: red;
+    color: red;
 }
 .const {
-  color: red;
+    color: red;
 }
 .continue {
-  color: red;
+    color: red;
 }
 .debugger {
-  color: red;
+    color: red;
 }
 .default {
-  color: red;
+    color: red;
 }
 .delete {
-  color: red;
+    color: red;
 }
 .do {
-  color: red;
+    color: red;
 }
 .else {
-  color: red;
+    color: red;
 }
 .export {
-  color: red;
+    color: red;
 }
 .extends {
-  color: red;
+    color: red;
 }
 .finally {
-  color: red;
+    color: red;
 }
 .for {
-  color: red;
+    color: red;
 }
 .function {
-  color: red;
+    color: red;
 }
 .if {
-  color: red;
+    color: red;
 }
 .import {
-  color: red;
+    color: red;
 }
 .in {
-  color: red;
+    color: red;
 }
 .instanceof {
-  color: red;
+    color: red;
 }
 .new {
-  color: red;
+    color: red;
 }
 .return {
-  color: red;
+    color: red;
 }
 .super {
-  color: red;
+    color: red;
 }
 .switch {
-  color: red;
+    color: red;
 }
 .this {
-  color: red;
+    color: red;
 }
 .throw {
-  color: red;
+    color: red;
 }
 .try {
-  color: red;
+    color: red;
 }
 .typeof {
-  color: red;
+    color: red;
 }
 .var {
-  color: red;
+    color: red;
 }
 .void {
-  color: red;
+    color: red;
 }
 .while {
-  color: red;
+    color: red;
 }
 .with {
-  color: red;
+    color: red;
 }
 .yield {
-  color: red;
+    color: red;
 }
