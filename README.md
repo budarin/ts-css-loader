@@ -34,7 +34,7 @@ This loader should be used instead of` css-loader ' because inside it uses it.
 
 An example of using webpack at.config:
 
-````js
+```js
     test: /\.css$/,
     use: [
         {
@@ -50,13 +50,15 @@ An example of using webpack at.config:
 ```
 
 for style file:
+
 ```css
-    .foo {
-        color: red;
-    }
+.foo {
+    color: red;
+}
 ```
 
 the loader will generate a type definition:
+
 ```ts
 declare interface IAppCss {
     readonly foo: string;
@@ -64,7 +66,7 @@ declare interface IAppCss {
 declare const styles: IAppCss;
 
 export default styles;
-````
+```
 
 ### `EOL`
 
