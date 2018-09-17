@@ -22,12 +22,7 @@ export default styles;
 -   modules + namedExport :
 
 ```ts
-declare interface ILocals {
-    readonly hello: string;
-}
-
 export const hello: string;
-export const locals: ILocals;
 ```
 
 -   modules + server:
@@ -69,12 +64,7 @@ export default styles;
     (server => sourse + ILocals )
 
 ```ts
-declare interface ILocals {
-    readonly hello: string;
-}
-
 export const hello: string;
-export const locals: ILocals;
 export const use: Function;
 export const unuse: Function;
 export const source: string;
