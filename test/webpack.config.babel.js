@@ -12,32 +12,32 @@ module.exports = {
             {
                 test: /example\.css$/,
                 loader: './src/index.js',
-                options: { EOL: '\n', modules: true },
+                options: { EOL: 'LF', modules: true },
             },
             {
                 test: /example-camelcase\.css$/,
                 loader: './src/index.js',
-                options: { EOL: '\n', modules: true, camelCase: true },
+                options: { EOL: 'LF', modules: true, camelCase: true },
             },
             {
                 test: /example-namedexport\.css$/,
                 loader: './src/index.js',
-                options: { EOL: '\n', modules: true, namedExport: true },
+                options: { EOL: 'LF', modules: true, onlyNamedExport: true },
             },
             {
                 test: /example-camelcase-namedexport\.css$/,
                 loader: './src/index.js',
-                options: { EOL: '\n', modules: true, camelCase: true, namedExport: true },
+                options: { EOL: 'LF', modules: true, camelCase: true, onlyNamedExport: true },
             },
             {
                 test: /example-no-css-modules\.css$/,
                 loader: './src/index.js',
-                options: { EOL: '\n', modules: false, silent: true }, //set silent: false to have an error during loding time
+                options: { EOL: 'LF', modules: false, silent: false },
             },
             {
                 test: /example-compose\.css$/,
                 loader: './src/index.js',
-                options: { EOL: '\n', modules: true, camelCase: true, namedExport: true },
+                options: { EOL: 'LF', modules: true, camelCase: true, onlyNamedExport: true },
             },
         ],
     },

@@ -38,12 +38,14 @@ module.exports = function(...input) {
         if (err) {
             return callback(err);
         }
+
+        let match;
+        let cssModuleDefinition;
+
+        const cssModuleKeys = [];
+        const keyRegex = /"([^\\"]+)":/g;
         const filename = this.resourcePath;
         const cssModuleInterfaceFilename = filenameToTypingsFilename(filename);
-
-        const keyRegex = /"([^\\"]+)":/g;
-        let match;
-        const cssModuleKeys = [];
 
         while ((match = keyRegex.exec(content))) {
             if (cssModuleKeys.indexOf(match[1]) < 0) {
@@ -51,22 +53,20 @@ module.exports = function(...input) {
             }
         }
 
-        let cssModuleDefinition;
-        if (!query.namedExport) {
-            cssModuleDefinition = generateGenericExportInterface(cssModuleKeys, filename);
-        } else {
+        if (query.onlyNamedExport) {
             const [cleanedDefinitions, skippedDefinitions] = filterNonWordClasses(cssModuleKeys);
+            const [nonReservedWordDefinitions, reservedWordDefinitions] = filterReservedWordClasses(cleanedDefinitions);
+
             if (skippedDefinitions.length > 0 && !query.camelCase) {
                 logger(
                     'warn',
-                    `Typings for CSS-Modules: option 'namedExport' was set but 'camelCase' for the css-loader not.
+                    `Typings for CSS-Modules: option 'onlyNamedExport' was set but 'camelCase' for the css-loader not.
 The following classes will not be available as named exports:
 ${skippedDefinitions.map(sd => ` - "${sd}"`).join('\n').red}
 `.yellow,
                 );
             }
 
-            const [nonReservedWordDefinitions, reservedWordDefinitions] = filterReservedWordClasses(cleanedDefinitions);
             if (reservedWordDefinitions.length > 0) {
                 logger(
                     'warn',
@@ -79,16 +79,22 @@ These can be accessed using the object literal syntax; eg styles['delete'] inste
             }
 
             cssModuleDefinition = generateNamedExports(nonReservedWordDefinitions);
+        } else {
+            cssModuleDefinition = generateGenericExportInterface(cssModuleKeys, filename);
         }
+
         if (cssModuleDefinition.trim() === '') {
             // Ensure empty CSS modules export something
             cssModuleDefinition = 'export {};\n';
         }
+
         if (query.banner) {
             // Prefix banner to CSS module
             cssModuleDefinition = query.banner + '\n' + cssModuleDefinition;
         }
+
         persist.writeToFileIfChanged(cssModuleInterfaceFilename, cssModuleDefinition), query.EOL;
+
         // mock async step 3 - make `async` return the actual callback again before calling the 'real' css-loader
         delegateToCssLoader(this, input, callback);
     };

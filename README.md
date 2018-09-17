@@ -35,7 +35,7 @@ declare const styles: IAppCss;
 export default styles;
 ```
 
--   modules + namedExport :
+-   modules + onlyNamedExport :
 
 ```ts
 export const hello: string;
