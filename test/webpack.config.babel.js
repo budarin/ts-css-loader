@@ -10,15 +10,37 @@ module.exports = {
     module: {
         rules: [
             { test: /\.ts$/, loader: ['ts-loader'] },
-            { test: /example\.css$/, loader: './src/index.js?modules' },
-            { test: /example-camelcase\.css$/, loader: './src/index.js?modules&camelCase' },
-            { test: /example-namedexport\.css$/, loader: './src/index.js?modules&namedExport' },
+
+            {
+                test: /example\.css$/,
+                loader: './src/index.js',
+                options: { modules: true },
+            },
+            {
+                test: /example-camelcase\.css$/,
+                loader: './src/index.js',
+                options: { modules: true, camelCase: true },
+            },
+            {
+                test: /example-namedexport\.css$/,
+                loader: './src/index.js',
+                options: { modules: true, namedExport: true },
+            },
             {
                 test: /example-camelcase-namedexport\.css$/,
-                loader: './src/index.js?modules&camelCase&namedExport',
+                loader: './src/index.js',
+                options: { modules: true, camelCase: true, namedExport: true },
             },
-            { test: /example-no-css-modules\.css$/, loader: './src/index.js?silent' },
-            { test: /example-compose\.css$/, loader: './src/index.js?modules&camelCase&namedExport' },
+            {
+                test: /example-no-css-modules\.css$/,
+                loader: './src/index.js',
+                options: { silent: true }, //set silent: false to have an error during loding time
+            },
+            {
+                test: /example-compose\.css$/,
+                loader: './src/index.js',
+                options: { modules: true, camelCase: true, namedExport: true },
+            },
         ],
     },
     resolve: {
