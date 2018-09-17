@@ -1,14 +1,8 @@
-// @ts-ignore
 import { locals as stylesBase } from './example.css';
-// @ts-ignore
 import { locals as stylesCamelCase } from './example-camelcase.css';
-// @ts-ignore
 import * as stylesNamedExport from './example-namedexport.css';
-// @ts-ignore
 import * as stylesCamelCasedNamedExport from './example-camelcase-namedexport.css';
-// @ts-ignore
 import './example-no-css-modules.css';
-// @ts-ignore
 import * as compose from './example-compose.css';
 
 const foo = stylesBase.foo;
