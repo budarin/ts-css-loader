@@ -52,7 +52,7 @@ An example of using webpack.config:
     ]
 ```
 
-for style file:
+for style file `app.css`:
 
 ```css
 .foo {
@@ -73,7 +73,8 @@ export default styles;
 
 ### `EOL`
 
-Default: `'CRLF'`
+Default: `'CRLF'`.
+
 Defines a line separator in type definition file and must be equal to the parameter set in `git` to prevent constant overwriting of type definition file.
 This parameter can take one of these acronims `{'CR LF','LF`}'
 
@@ -95,7 +96,8 @@ This parameter can take one of these acronims `{'CR LF','LF`}'
 
 ### `onlyNamedExport`
 
-Default: `false`
+Default: `false`.
+
 This parameter determines whether only named exports are present in the module interface
 
 ```js
@@ -121,6 +123,8 @@ export const foo: string;
 ```
 
 ### `usable`
+
+Default: `false`.
 
 The parameter determines the presence of `style-loader/disable` methods in the interface: `use` and `unuse`.
 
@@ -158,7 +162,8 @@ export default styles;
 
 ### `server`
 
-Default: `false`
+Default: `false`.
+
 Determines the presence of the interface property `source: string` for `fake-style-loader` and presene all css classes in default export
 
 ```js
@@ -191,6 +196,8 @@ export default styles;
 
 ### `silent`
 
+Default: `false`.
+
 To silence the loader because you get annoyed by its warnings or for other reasons, you can simply pass the "silent" query to the loader and it will shut up.
 e.g.:
 
@@ -210,6 +217,8 @@ e.g.:
 ```
 
 ### `banner`
+
+Default: `false`..
 
 To add a "banner" prefix to each generated `*.d.ts` file, you can pass a string to this option as shown below. The prefix is quite literally prefixed into the generated file, so please ensure it conforms to the type definition syntax.
 
