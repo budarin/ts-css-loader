@@ -9,7 +9,7 @@ The purpose of creating yet another typescript generation loader for css-modules
 -   `use: Function`
 -   `unuse: Function`
 
-`fake-style-loader` adds a properties to the css-modules interface:
+`fake-style-loader` adds properties to the css-modules interface:
 
 -   `source: String`
 -   all classnames into default exported object
