@@ -2,7 +2,7 @@
 
 This loader is a fork of the well-known loader (typings-for-css-modules-loader)[https://github.com/Jimdo/typings-for-css-modules-loader]
 
-The purpose of creating another type generation loader typescript for css-modules is the ability to use it in an isomorphic application in conjunction with (style-loader/usable)[https://github.com/webpack-contrib/style-loader] и (fake-style-loader)[https://github.com/dferber90/fake-style-loader].
+The purpose of creating another type generation loader typescript for css-modules is the ability to use it in an isomorphic application in conjunction with [style-loader/usable](https://github.com/webpack-contrib/style-loader) и [(]fake-style-loader}([)https://github.com/dferber90/fake-style-loader).
 
 `style-loader/usable` adds 2 methods to the standard css-modules interface:
 
@@ -17,7 +17,7 @@ Install via npm `npm install --save-dev @budarin/ts-css-loader`
 
 ## `Options`
 
-All options are available only when the parameter `modules` set to `true` (see options (css-loader)[https://github.com/webpack-contrib/css-loader#options])
+All options are available only when the parameter `modules` set to `true`(see options [css-loader](https://github.com/webpack-contrib/css-loader#options))
 
 |                   Name                    |    Type     | Default | Description                                      |
 | :---------------------------------------: | :---------: | :-----: | :----------------------------------------------- |
