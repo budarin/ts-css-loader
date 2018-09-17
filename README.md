@@ -68,5 +68,4 @@ export const hello: string;
 export const use: Function;
 export const unuse: Function;
 export const source: string;
-}
 ```
