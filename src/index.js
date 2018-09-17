@@ -58,7 +58,7 @@ module.exports = function(...input) {
         const cssModuleKeys = [];
         const keyRegex = /"([^\\"]+)":/g;
         const filename = this.resourcePath;
-        const EOL = EOLs[options.EOL || 'CRLF'];
+        const EOL = EOLs[options.EOL] || EOLs['CRLF'];
         const cssModuleInterfaceFilename = filenameToTypingsFilename(filename);
 
         while ((match = keyRegex.exec(content))) {
