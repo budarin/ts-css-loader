@@ -12,6 +12,7 @@ The purpose of creating yet another typescript generation loader for css-modules
 `fake-style-loader` adds a property to the standard css-modules interface:
 
 -   `source: String`
+-   all classname into edfault exported object
 
 ## `Installation`
 
@@ -179,12 +180,8 @@ Determines the presence of the interface property `source: string` for `fake-sty
 output:
 
 ```ts
-declare interface ILocals {
-    readonly foo: string;
-}
 declare interface IAppCss {
     readonly foo: string;
-    readonly locals: ILocals;
     readonly source: string;
 }
 declare const styles: IAppCss;
