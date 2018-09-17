@@ -158,7 +158,7 @@ export default styles;
 ### `server`
 
 Default: `false`
-Determines the presence of the interface property `source: string` for `fake-style-loader`
+Determines the presence of the interface property `source: string` for `fake-style-loader` and presene all css classes in default export
 
 ```js
     test: /\.css$/,
@@ -183,6 +183,7 @@ declare interface ILocals {
     readonly foo: string;
 }
 declare interface IAppCss {
+    readonly foo: string;
     readonly locals: ILocals;
     readonly source: string;
 }

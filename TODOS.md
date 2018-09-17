@@ -1,1 +1,1 @@
--   write readme
+-   cover all use cases with tests

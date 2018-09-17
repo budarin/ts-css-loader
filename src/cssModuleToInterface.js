@@ -113,6 +113,7 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
         '}',
         '',
         `export interface ${interfaceName} {`,
+        ...interfaceProperties,
         `${indent}readonly locals: ILocals;`,
     );
 
