@@ -2,7 +2,7 @@
 
 This loader is a fork of the well-known loader [typings-for-css-modules-loader](https://github.com/Jimdo/typings-for-css-modules-loader)
 
-The purpose of creating yet another typescript generation loader for css-modules is the ability to use it in an isomorphic application in conjunction with [style-loader/usable](https://github.com/webpack-contrib/style-loader) and [fake-style-loader](https://github.com/dferber90/fake-style-loader).
+The purpose of creating yet another typescript generation loader for css-modules is the ability to use it in an isomorphic application in conjunction with [style-loader/usable](https://github.com/webpack-contrib/style-loader)(is used in browser to use or unse component's stylesheets) and [fake-style-loader](https://github.com/dferber90/fake-style-loader)(is used on server side to get source css from component's stylesheet).
 
 `style-loader/usable` adds 2 methods to the css-modules interface:
 
@@ -26,7 +26,7 @@ All options are available only when the parameter `modules` set to `true`(see op
 | :---------------------------------------: | :---------: | :-----: | :------------------------------------------------------------------------- |
 |             **[`EOL`](#EOL)**             | `{String}`  | `CRLF`  | {'CRLF', 'LF'}                                                             |
 | **[`onlyNamedExport`](#onlyNamedExport)** | `{Boolean}` | `false` | Export only named items of interface                                       |
-|          **[`usable`](#usable)**          | `{Boolean}` | `false` | Add `use` and `unuse` methods to interface and all classnames in flat view |
+|         **[`browser`](#browser)**         | `{Boolean}` | `false` | Add `use` and `unuse` methods to interface and all classnames in flat view |
 |          **[`server`](#server)**          | `{Boolean}` | `false` | Add `source` property to interface                                         |
 |          **[`silent`](#silent)**          | `{Boolean}` | `false` | To silence the loader                                                      |
 |          **[`banner`](#banner)**          | `{Boolean}` | `false` | Adds a "banner" prefix to each generated \*.d.ts                           |
@@ -122,7 +122,7 @@ output:
 export const foo: string;
 ```
 
-### `usable`
+### `browser`
 
 Default: `false`.
 
@@ -138,7 +138,7 @@ The parameter determines the presence of `style-loader/disable` methods in the i
             loader: '@budarin/ts-css-loader',
             options: {
                 modules: true,
-                usable: true
+                browser: true
             }
         }
     ]
@@ -266,7 +266,7 @@ For isomorphic applications, you can use the following configuration:
             loader: '@budarin/ts-css-loader',
             options: {
                 modules: true,
-                usable: true,
+                browser: true,
                 server: true
             }
         }

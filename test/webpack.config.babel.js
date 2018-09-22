@@ -17,12 +17,12 @@ module.exports = {
             {
                 test: /example-camelcase\.css$/,
                 loader: './src/index.js',
-                options: { EOL: 'LF', modules: true, camelCase: true, usable: true, server: true },
+                options: { EOL: 'LF', modules: true, camelCase: true, browser: true, server: true },
             },
             {
                 test: /example-namedexport\.css$/,
                 loader: './src/index.js',
-                options: { EOL: 'LF', modules: true, onlyNamedExport: true, usable: true, server: true },
+                options: { EOL: 'LF', modules: true, onlyNamedExport: true, browser: true, server: true },
             },
             {
                 test: /example-camelcase-namedexport\.css$/,
