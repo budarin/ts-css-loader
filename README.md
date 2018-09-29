@@ -195,7 +195,7 @@ declare const styles: IAppCss;
 export default styles;
 ```
 
-### `server`
+### `tabWidth`
 
 Default: 4.
 
