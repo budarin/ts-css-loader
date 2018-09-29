@@ -1,6 +1,6 @@
 {
     "name": "@budarin/ts-css-loader",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "description": "Drop-in replacement for css-loader to generate typings for your CSS-Modules on the fly in webpack",
     "main": "lib/index.js",
     "scripts": {
@@ -13,7 +13,7 @@
         "test:run-twice": "npm run test:run || npm run test:run",
         "test": "npm run test:run-twice && tsc ./test/entry.ts",
         "version:patch": "npm version patch -m \"Upgrade to %s for reasons\"",
-        "go-publish": "npm publish",
+        "!publish": "npm publish",
         "upgrade": "npm-upgrade && npm install"
     },
     "author": "Budarin Vadim",
