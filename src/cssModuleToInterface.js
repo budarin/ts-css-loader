@@ -10,7 +10,7 @@ const filenameToInterfaceName = filename => {
 const cssModuleToNamedExports = (options, cssModuleKeys) => {
     const result = cssModuleKeys.map(key => `export const ${key}: string;`);
 
-    if (options.usable) {
+    if (options.browser) {
         result.push('export const use: Function;');
         result.push('export const unuse: Function;');
     }
@@ -116,7 +116,7 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
         `${indent}readonly locals: IStyles;`,
     );
 
-    if (options.usable) {
+    if (options.browser) {
         result.push(...usableInterfaceProperties);
     }
 

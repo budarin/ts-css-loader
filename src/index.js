@@ -39,7 +39,7 @@ module.exports = function(...input) {
 
     const options = {
         EOL: 'CRLF',
-        usable: false,
+        browser: false,
         server: false,
         camelCase: true,
         onlyNamedExport: false,
