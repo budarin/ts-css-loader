@@ -101,7 +101,7 @@ export const generateNamedExports = (options, cssModuleKeys, EOL) => {
 };
 
 export const generateGenericExportInterface = (options, cssModuleKeys, filename, EOL, indent = '  ') => {
-    const localsInterface = 'declare interface ILocals {';
+    const localsInterface = 'export interface IStyles {';
     const interfaceName = filenameToInterfaceName(filename);
     const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, indent);
     const usableInterfaceProperties = [`${indent}readonly use: Function;`, `${indent}readonly unuse: Function;`];
@@ -113,7 +113,7 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
         '}',
         '',
         `export interface ${interfaceName} {`,
-        `${indent}readonly locals: ILocals;`,
+        `${indent}readonly locals: IStyles;`,
     );
 
     if (options.usable) {

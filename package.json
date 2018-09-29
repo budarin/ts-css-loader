@@ -13,7 +13,8 @@
         "test:run-twice": "npm run test:run || npm run test:run",
         "test": "npm run test:run-twice && tsc ./test/entry.ts",
         "version:patch": "npm version patch -m \"Upgrade to %s for reasons\"",
-        "go-publish": "npm publish"
+        "go-publish": "npm publish",
+        "upgrade": "npm-upgrade && npm install"
     },
     "author": "Budarin Vadim",
     "license": "MIT",
@@ -36,21 +37,21 @@
         "loader-utils": "^1.1.0"
     },
     "devDependencies": {
-        "@babel/cli": "^7.0.0",
-        "@babel/core": "^7.0.1",
+        "@babel/cli": "^7.1.2",
+        "@babel/core": "^7.1.2",
         "@babel/polyfill": "^7.0.0",
-        "@babel/preset-env": "^7.0.0",
+        "@babel/preset-env": "^7.1.0",
         "@babel/register": "^7.0.0",
-        "babel-eslint": "^9.0.0",
-        "babel-loader": "^8.0.2",
+        "babel-eslint": "^10.0.1",
+        "babel-loader": "^8.0.4",
         "css-loader": "^1.0.0",
-        "eslint": "^5.6.0",
-        "eslint-plugin-babel": "^5.2.0",
+        "eslint": "^5.6.1",
+        "eslint-plugin-babel": "^5.2.1",
         "rimraf": "^2.6.2",
-        "ts-loader": "^5.1.1",
-        "typescript": "^3.0.3",
-        "webpack": "^4.19.0",
-        "webpack-cli": "^3.1.0"
+        "ts-loader": "^5.2.1",
+        "typescript": "^3.1.1",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.1"
     },
     "peerDependencies": {
         "css-loader": "^1.0.0"
