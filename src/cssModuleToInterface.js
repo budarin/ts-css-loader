@@ -88,7 +88,9 @@ export const filenameToTypingsFilename = filename => {
 };
 
 const cssModuleToTypescriptInterfaceProperties = (cssModuleKeys, indent = '  ') => {
-    const result = cssModuleKeys.map(key => `${indent}readonly '${key}': string;`);
+    const result = cssModuleKeys.map(
+        key => (key.includes('-') ? `${indent}readonly '${key}': string;` : `${indent}readonly ${key}: string;`),
+    );
 
     return result;
 };
