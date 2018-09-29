@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import cssLoader from 'css-loader';
 import cssLocalsLoader from 'css-loader/locals';
 import loaderUtils from 'loader-utils';
@@ -14,6 +16,15 @@ import {
 import * as persist from './persist';
 import loggerCreator from './logger';
 
+const filePath = path.resolve('./.prettierrc');
+let prettierrc = {};
+if (fs.existsSync(filePath)) {
+    const jsonString = fs.readFileSync(filePath, 'utf-8');
+    try {
+        prettierrc = JSON.parse(jsonString);
+    } catch (err) {}
+}
+
 function delegateToCssLoader(ctx, input, callback) {
     ctx.async = () => callback;
     cssLoader.call(ctx, ...input);
@@ -27,6 +38,8 @@ module.exports = function(...input) {
     const query = loaderUtils.getOptions(this);
     const logger = loggerCreator(query.silent);
     const moduleMode = query.modules || query.module;
+    const tabWidths = [2, 4];
+    const tabWidth = prettierrc.tabWidth || 4;
     const EOLs = {
         CRLF: os.EOL,
         LF: '\n',
@@ -39,12 +52,15 @@ module.exports = function(...input) {
 
     const options = {
         EOL: 'CRLF',
+        tabWidth,
         browser: false,
         server: false,
         camelCase: true,
         onlyNamedExport: false,
         ...query,
     };
+
+    options.tabWidth = tabWidths.includes(options.tabWidth) ? options.tabWidth : tabWidth;
 
     // mock async step 2 - offer css loader a "fake" callback
     this.async = () => (err, content) => {
@@ -59,7 +75,12 @@ module.exports = function(...input) {
         const keyRegex = /"([^\\"]+)":/g;
         const filename = this.resourcePath;
         const EOL = EOLs[options.EOL] || EOLs['CRLF'];
+        const tabsString = ''.padStart(options.tabWidth);
         const cssModuleInterfaceFilename = filenameToTypingsFilename(filename);
+        const params = {
+            EOL,
+            tabsString,
+        };
 
         while ((match = keyRegex.exec(content))) {
             if (cssModuleKeys.indexOf(match[1]) < 0) {
@@ -92,9 +113,9 @@ These can be accessed using the object literal syntax; eg styles['delete'] inste
                 );
             }
 
-            cssModuleDefinition = generateNamedExports(options, nonReservedWordDefinitions, EOL);
+            cssModuleDefinition = generateNamedExports(options, nonReservedWordDefinitions, params);
         } else {
-            cssModuleDefinition = generateGenericExportInterface(options, cssModuleKeys, filename, EOL);
+            cssModuleDefinition = generateGenericExportInterface(options, cssModuleKeys, filename, params);
         }
 
         if (cssModuleDefinition.trim() === '') {
@@ -107,7 +128,7 @@ These can be accessed using the object literal syntax; eg styles['delete'] inste
             cssModuleDefinition = options.banner + EOL + cssModuleDefinition;
         }
 
-        persist.writeToFileIfChanged(cssModuleInterfaceFilename, cssModuleDefinition, EOL);
+        persist.writeToFileIfChanged(cssModuleInterfaceFilename, cssModuleDefinition, params);
 
         // mock async step 3 - make `async` return the actual callback again before calling the 'real' css-loader
         delegateToCssLoader(this, input, callback);

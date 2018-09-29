@@ -96,17 +96,20 @@ const cssModuleToTypescriptInterfaceProperties = (cssModuleKeys, indent = '  ') 
 };
 
 // Generate utils
-export const generateNamedExports = (options, cssModuleKeys, EOL) => {
+export const generateNamedExports = (options, cssModuleKeys, { EOL }) => {
     const namedExports = cssModuleToNamedExports(options, cssModuleKeys);
 
     return namedExports.join(EOL);
 };
 
-export const generateGenericExportInterface = (options, cssModuleKeys, filename, EOL, indent = '  ') => {
+export const generateGenericExportInterface = (options, cssModuleKeys, filename, { EOL, tabsString }) => {
     const localsInterface = 'export interface IStyles {';
     const interfaceName = filenameToInterfaceName(filename);
-    const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, indent);
-    const usableInterfaceProperties = [`${indent}readonly use: Function;`, `${indent}readonly unuse: Function;`];
+    const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, tabsString);
+    const usableInterfaceProperties = [
+        `${tabsString}readonly use: Function;`,
+        `${tabsString}readonly unuse: Function;`,
+    ];
     const result = [];
 
     result.push(
@@ -115,7 +118,7 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
         '}',
         '',
         `export interface ${interfaceName} {`,
-        `${indent}readonly locals: IStyles;`,
+        `${tabsString}readonly locals: IStyles;`,
     );
 
     if (options.browser) {
@@ -123,7 +126,7 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
     }
 
     if (options.server) {
-        result.push(`${indent}readonly source: string;`);
+        result.push(`${tabsString}readonly source: string;`);
         result.push(...interfaceProperties);
     }
 
