@@ -127,7 +127,7 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
         result.push(...interfaceProperties);
     }
 
-    result.push('}', '', `declare const styles: ${interfaceName};`, '', 'export default styles;');
+    result.push('}', '', `declare const styles: ${interfaceName};`, '', 'export default styles;', '');
 
     return result.join(EOL);
 };
