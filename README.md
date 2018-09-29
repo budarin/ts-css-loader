@@ -28,6 +28,7 @@ All options are available only when the parameter `modules` set to `true`(see op
 | **[`onlyNamedExport`](#onlyNamedExport)** | `{Boolean}` | `false` | Export only named items of interface                                       |
 |         **[`browser`](#browser)**         | `{Boolean}` | `false` | Add `use` and `unuse` methods to interface and all classnames in flat view |
 |          **[`server`](#server)**          | `{Boolean}` | `false` | Add `source` property to interface                                         |
+|        **[`tabWidth`](#tabWidth)**        | `{Number}`  |    4    | Set tabWidth for indentation                                               |
 |          **[`silent`](#silent)**          | `{Boolean}` | `false` | To silence the loader                                                      |
 |          **[`banner`](#banner)**          | `{Boolean}` | `false` | Adds a "banner" prefix to each generated \*.d.ts                           |
 
@@ -193,6 +194,12 @@ declare const styles: IAppCss;
 
 export default styles;
 ```
+
+### `server`
+
+Default: 4.
+
+Number of spaces it should use per tab
 
 ### `silent`
 
