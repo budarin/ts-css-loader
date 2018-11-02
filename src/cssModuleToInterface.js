@@ -103,7 +103,6 @@ export const generateNamedExports = (options, cssModuleKeys, { EOL }) => {
 };
 
 export const generateGenericExportInterface = (options, cssModuleKeys, filename, { EOL, tabsString }) => {
-    const localsInterface = 'export interface IStyles {';
     const interfaceName = filenameToInterfaceName(filename);
     const interfaceProperties = cssModuleToTypescriptInterfaceProperties(cssModuleKeys, tabsString);
     const usableInterfaceProperties = [
@@ -113,12 +112,10 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
     const result = [];
 
     result.push(
-        localsInterface,
-        ...interfaceProperties,
-        '}',
-        '',
         `export interface ${interfaceName} {`,
-        `${tabsString}readonly locals: IStyles;`,
+        `${tabsString}readonly locals: {`,
+        ...interfaceProperties.map(item => `${tabsString}${item}`),
+        `${tabsString}};`,
     );
 
     if (options.browser) {
