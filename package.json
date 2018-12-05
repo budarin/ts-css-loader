@@ -1,6 +1,6 @@
 {
     "name": "@budarin/ts-css-loader",
-    "version": "1.1.12",
+    "version": "1.1.13",
     "description": "Drop-in replacement for css-loader to generate typings for your CSS-Modules on the fly in webpack",
     "main": "lib/index.js",
     "scripts": {
@@ -33,24 +33,24 @@
     },
     "dependencies": {
         "colour": "^0.7.1",
-        "graceful-fs": "^4.1.11",
+        "graceful-fs": "^4.1.15",
         "loader-utils": "^1.1.0"
     },
     "devDependencies": {
-        "@babel/cli": "^7.1.2",
-        "@babel/core": "^7.1.2",
+        "@babel/cli": "^7.2.0",
+        "@babel/core": "^7.2.0",
         "@babel/polyfill": "^7.0.0",
-        "@babel/preset-env": "^7.1.0",
+        "@babel/preset-env": "^7.2.0",
         "@babel/register": "^7.0.0",
         "babel-eslint": "^10.0.1",
         "babel-loader": "^8.0.4",
         "css-loader": "^1.0.1",
-        "eslint": "^5.8.0",
-        "eslint-plugin-babel": "^5.2.1",
+        "eslint": "^5.9.0",
+        "eslint-plugin-babel": "^5.3.0",
         "rimraf": "^2.6.2",
-        "ts-loader": "^5.3.0",
-        "typescript": "^3.1.6",
-        "webpack": "^4.24.0",
+        "ts-loader": "^5.3.1",
+        "typescript": "^3.2.1",
+        "webpack": "^4.27.0",
         "webpack-cli": "^3.1.2"
     },
     "peerDependencies": {
