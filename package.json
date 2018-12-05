@@ -14,7 +14,8 @@
         "test": "npm run test:run-twice && tsc ./test/entry.ts",
         "version:patch": "npm version patch -m \"Upgrade to %s for reasons\"",
         "upgrade": "npm-upgrade && npm install",
-        "!publish": "npm publish"
+        "!publish": "npm publish",
+        "git-remove-deleted-branches": "git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
     },
     "author": "Budarin Vadim",
     "license": "MIT",
