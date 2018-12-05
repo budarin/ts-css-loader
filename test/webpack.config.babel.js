@@ -15,6 +15,11 @@ module.exports = {
                 options: { EOL: 'LF', modules: true },
             },
             {
+                test: /example-empty\.css$/,
+                loader: './src/index.js',
+                options: { EOL: 'LF', modules: true },
+            },
+            {
                 test: /example-camelcase\.css$/,
                 loader: './src/index.js',
                 options: { EOL: 'LF', modules: true, camelCase: true, browser: true, server: true },

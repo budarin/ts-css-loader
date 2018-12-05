@@ -88,8 +88,8 @@ export const filenameToTypingsFilename = filename => {
 };
 
 const cssModuleToTypescriptInterfaceProperties = (cssModuleKeys, indent = '  ') => {
-    const result = cssModuleKeys.map(
-        key => (key.includes('-') ? `${indent}readonly '${key}': string;` : `${indent}readonly ${key}: string;`),
+    const result = cssModuleKeys.map(key =>
+        key.includes('-') ? `${indent}readonly '${key}': string;` : `${indent}readonly ${key}: string;`,
     );
 
     return result;
@@ -111,12 +111,18 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
     ];
     const result = [];
 
-    result.push(
-        `export interface ${interfaceName} {`,
-        `${tabsString}readonly locals: {`,
-        ...interfaceProperties.map(item => `${tabsString}${item}`),
-        `${tabsString}};`,
-    );
+    console.log('interfaceProperties.length', interfaceProperties.length);
+
+    if (interfaceProperties.length === 0) {
+        result.push(`export interface ${interfaceName} {`, `${tabsString}readonly locals: {};`);
+    } else {
+        result.push(
+            `export interface ${interfaceName} {`,
+            `${tabsString}readonly locals: {`,
+            ...interfaceProperties.map(item => `${tabsString}${item}`),
+            `${tabsString}};`,
+        );
+    }
 
     if (options.browser) {
         result.push(...usableInterfaceProperties);

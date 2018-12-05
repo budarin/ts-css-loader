@@ -1,9 +1,14 @@
 import stylesBase from './example.css';
 import stylesCamelCase from './example-camelcase.css';
+
 import * as stylesNamedExport from './example-namedexport.css';
 import * as stylesCamelCasedNamedExport from './example-camelcase-namedexport.css';
 import './example-no-css-modules.css';
 import * as compose from './example-compose.css';
+
+import stylesBase1 from './example-empty.css';
+
+console.log(stylesBase1.locals);
 
 const foo = stylesBase.locals.foo;
 console.log(foo);
