@@ -111,8 +111,6 @@ export const generateGenericExportInterface = (options, cssModuleKeys, filename,
     ];
     const result = [];
 
-    console.log('interfaceProperties.length', interfaceProperties.length);
-
     if (interfaceProperties.length === 0) {
         result.push(`export interface ${interfaceName} {`, `${tabsString}readonly locals: {};`);
     } else {
