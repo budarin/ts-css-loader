@@ -28,5 +28,6 @@
     "workbench.statusBar.feedback.visible": false,
     "workbench.sideBar.location": "left",
     "git.confirmSync": false,
-    "eslint.enable": false
+    "eslint.enable": false,
+    "files.eol": "\n"
 }
